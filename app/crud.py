@@ -9,7 +9,7 @@ def get_items(db: Session, category: str | None = None, skip: int = 0, limit: in
     return query.offset(skip).limit(limit).all()
 
 def create_item(item: schemas.ItemCreate, db: Session):
-    db_item = models.Item(**item.dict())
+    db_item = models.Item(**item.model_dump())
     db.add(db_item)
     db.commit()
     db.refresh(db_item)
@@ -19,7 +19,7 @@ def get_customer_by_name(db: Session, name: str):
     return db.query(models.Customer).filter(models.Customer.name == name).first()
 
 def create_customer(customer: schemas.CustomerCreate, db: Session):
-    db_customer = models.Customer(**customer.dict())
+    db_customer = models.Customer(**customer.model_dump())
     db.add(db_customer)
     db.commit()
     db.refresh(db_customer)
