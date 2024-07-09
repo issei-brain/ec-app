@@ -10,5 +10,3 @@ class Item(Base):
     name = Column(String, index=True)
     category = Column(String, index=True)
     description = Column(String)
-
-
