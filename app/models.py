@@ -10,3 +10,10 @@ class Item(Base):
     name = Column(String, index=True)
     category = Column(String, index=True)
     description = Column(String)
+
+class Customer(Base):
+    __tablename__ = "customers"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, unique=True, index=True)
+    age = Column(Integer)

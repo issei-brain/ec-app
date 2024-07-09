@@ -11,3 +11,13 @@ def create_item(item: schemas.ItemCreate, db: Session):
     db.commit()
     db.refresh(db_item)
     return db_item
+
+def get_customer_by_name(db: Session, name: str):
+    return db.query(models.Customer).filter(models.Customer.name == name).first()
+
+def create_customer(customer: schemas.CustomerCreate, db: Session):
+    db_customer = models.Customer(**customer.dict())
+    db.add(db_customer)
+    db.commit()
+    db.refresh(db_customer)
+    return db_customer

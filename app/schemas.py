@@ -13,3 +13,13 @@ class Item(ItemBase):
 
     class Config:
         orm_model = True
+
+class CustomerBase(BaseModel):
+    name: str
+    age: int
+
+class CustomerCreate(CustomerBase):
+    pass
+
+class Customer(CustomerBase):
+    id: int
