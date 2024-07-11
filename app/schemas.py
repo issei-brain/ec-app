@@ -31,7 +31,7 @@ class Customer(CustomerBase):
     id: int
 
 
-class OrderBase(Base):
+class OrderBase(BaseModel):
     item_id: int
     customer_id: int
     order_date: datetime
