@@ -3,9 +3,7 @@ from datetime import datetime
 
 class ItemBase(BaseModel):
     name: str
-    category: str = Field(
-        title="The category of the item", max_length=20
-    )
+    category: str
     description: str | None = Field(
         default = None, title="The description of the item", max_length=200
     )
