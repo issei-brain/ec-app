@@ -30,5 +30,5 @@ class Order(Base):
     customer_id = Column(Integer, ForeignKey("customers.id"))
     order_date = Column(DateTime)
 
-    customer = relationship("Item", back_populates="orders")
-    item = relationship("Order", back_populates="orders")
+    customer = relationship("Customer", back_populates="orders")
+    item = relationship("Item", back_populates="orders")
