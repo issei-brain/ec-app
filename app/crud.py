@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from datetime import datetime
 from . import models, schemas
 
@@ -27,7 +27,7 @@ def create_customer(customer: schemas.CustomerCreate, db: Session):
     return db_customer
 
 def get_orders_by_customer(db: Session, customer_id: int,  category: str = "", order_date_from: datetime = datetime.strptime("2024-07-11 20:00:00", "%Y-%m-%d %H:%M:%S")):
-    query = db.query(models.Order).filter(models.Order.customer_id == customer_id, models.Order.order_date >= order_date_from)
+    query = db.query(models.Order).options(joinedload(models.Order.item)).filter(models.Order.customer_id == customer_id, models.Order.order_date >= order_date_from)
     if category:
         query = query.join(models.Order.item).filter(models.Item.category == category)
     return query.all()    

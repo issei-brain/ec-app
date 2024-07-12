@@ -38,6 +38,7 @@ class OrderBase(BaseModel):
 class Order(OrderBase):
     id: int
     order_date: datetime
+    item: Item
 
     class Config:
         orm_model = True
