@@ -11,7 +11,7 @@ router = APIRouter()
 
 @router.get("/items/", response_model=list[schemas.Item])
 def read_items(
-        category: str = Query(defalut=None, max_length=20),
+        category: str = Query(default=None, max_length=20),
         skip: int = 0,
         limit: int = 100,
         db: Session = Depends(get_db)
