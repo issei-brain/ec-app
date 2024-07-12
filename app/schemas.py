@@ -34,10 +34,10 @@ class Customer(CustomerBase):
 class OrderBase(BaseModel):
     item_id: int
     customer_id: int
-    order_date: datetime
 
 class Order(OrderBase):
     id: int
+    order_date: datetime
 
     class Config:
         orm_model = True

@@ -31,3 +31,11 @@ def get_orders_by_customer(db: Session, customer_id: int,  category: str = "", o
     if category:
         query = query.join(models.Order.item).filter(models.Item.category == category)
     return query.all()    
+
+def create_order(db: Session, order: schemas.OrderCreate):
+    order_date = datetime.now()
+    db_order = models.Order(**order.model_dump(), order_date=order_date)
+    db.add(db_order)
+    db.commit()
+    db.refresh(db_order)
+    return db_order

@@ -19,12 +19,20 @@ def read_items(
     items = crud.get_items(db, category=category, skip=skip, limit=limit)
     return items
 
-@router.get("/purchase/", response_model=list[schemas.Order])
+@router.get("/order/", response_model=list[schemas.Order])
 def read_orders(
-            cutomer_id: int,
-            order_date_from: datetime = datetime.strptime("2024-07-11 20:00:00", "%Y-%m-%d %H:%M:%S"),
-            category: str = "",
-            db: Session = Depends(get_db)
+        customer_id: int,
+        order_date_from: datetime = datetime.strptime("2024-07-11 20:00:00", "%Y-%m-%d %H:%M:%S"),
+        category: str = "",
+        db: Session = Depends(get_db)
         ):
-    orders = crud.get_orders(db, cutomer_id = cutomer_id, order_date_from=order_date_from, category=category)
+    orders = crud.get_orders_by_customer(db, customer_id = customer_id, order_date_from=order_date_from, category=category)
     return orders
+
+@router.post("/order/", response_model=schemas.Order)
+def create_order(
+        order: schemas.OrderCreate,
+        db: Session = Depends(get_db)
+        ):
+    order = crud.create_order(db, order=order)
+    return order
