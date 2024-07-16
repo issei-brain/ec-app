@@ -64,13 +64,7 @@ id
 
 ・/customer/purchase/
 
-・クエリパラメータ
-
-  ・customer_id: int
-
-  ・order_date_from: int | None
-
-  ・category: str | None
+・リクエストボディ
 
 購入履歴閲覧
 
