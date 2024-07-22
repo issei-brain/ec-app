@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import datetime
 
 class ItemBase(BaseModel):
@@ -14,8 +14,7 @@ class ItemCreate(ItemBase):
 class Item(ItemBase):
     id: int
 
-    class Config:
-        orm_model = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class CustomerBase(BaseModel):
@@ -40,8 +39,7 @@ class Order(OrderBase):
     order_date: datetime
     item: Item
 
-    class Config:
-        orm_model = True
+    model_config = ConfigDict(from_attributes=True)
 
 class OrderCreate(OrderBase):
     pass
