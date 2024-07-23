@@ -1,9 +1,9 @@
 from fastapi import FastAPI, HTTPException
 
-from . import models
-from .database import engine
+from app import models
+from app.database import engine
 
-from .routers import customer, admin
+from app.routers import customer, admin
 
 app = FastAPI()
 
