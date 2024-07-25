@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session, joinedload
 from datetime import datetime
-from . import models, schemas
+from app import models, schemas
 
 
 def get_items(db: Session, category: str | None = None, skip: int = 0, limit: int = 100):
